@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>ExPlugins</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <UseWPF>True</UseWPF>
+   <TargetFramework>net7.0-windows</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="yLUPAWu5sI6amrZjZN.TyOqZjKd8OubV3dwjU" />
+    <None Remove="J5VGxagSOZuPig9QVk.EyVtuENhsoQC0uKfIQ" />
+    <EmbeddedResource Include="yLUPAWu5sI6amrZjZN.TyOqZjKd8OubV3dwjU" LogicalName="yLUPAWu5sI6amrZjZN.TyOqZjKd8OubV3dwjU" />
+    <EmbeddedResource Include="J5VGxagSOZuPig9QVk.EyVtuENhsoQC0uKfIQ" LogicalName="J5VGxagSOZuPig9QVk.EyVtuENhsoQC0uKfIQ" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="RestSharp" Version="110.2.1-alpha.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DreamPoeBot">
+      <HintPath>..\DreamPoeBot\DreamPoeBot.exe</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="log4net" />
+    <Reference Include="RestSharp">
+      <HintPath>..\DPB hack\ExPlugins\RestSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

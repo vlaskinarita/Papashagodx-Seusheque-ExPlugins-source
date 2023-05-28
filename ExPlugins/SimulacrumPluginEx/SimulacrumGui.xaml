@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.SimulacrumPluginEx.SimulacrumGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns:local="clr-namespace:ExPlugins.SimulacrumPluginEx">
+  <TabControl>
+    <TabItem Header="Basic" xmlns:ynqb1hgbgf0sbyvfrtz="clr-namespace:ynQb1HGbgf0sbYvfrTZ" DataContext="{x:Static ynqb1hgbgf0sbyvfrtz:wB2cGbG5HgWxOqZNhZC.Instance}">
+      <StackPanel>
+        <WrapPanel>
+          <NumericUpDown p10:NumericUpDown.Value="{Binding MaxWave, Mode=TwoWay}" xmlns:p10="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Content="Max Wave" />
+          <CheckBox Background="#FF8B0000" Content="Stop after current wave" IsChecked="{Binding Path=StopRequest}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,20,0,0">
+          <CheckBox Background="#FFF0F8FF" Content="Kill Bosses at the end of the wave" IsChecked="{Binding Path=KillBossAtTheEnd}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,5,0,0">
+          <GroupBox Header="Anchor points:">
+            <StackPanel>
+              <WrapPanel Margin="0,0,0,10">
+                <CheckBox Background="#FFF0F8FF" Content="Enabled" IsChecked="{Binding Path=EnableAnchorPoints}" />
+              </WrapPanel>
+              <WrapPanel IsEnabled="{Binding Path=EnableAnchorPoints}">
+                <Button Content=" Set current position as anchor point" Height="30" Click="DumpCoords" />
+              </WrapPanel>
+              <WrapPanel IsEnabled="{Binding Path=EnableAnchorPoints}">
+                <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" GridLinesVisibility="All" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" IsReadOnly="True" ItemsSource="{Binding Path=AnchorPoints}">
+                  <DataGrid.Columns>
+                    <DataGridTextColumn Header="Layout" IsReadOnly="True" Binding="{Binding Path=Layout, Mode=OneTime}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="Coordinates" Binding="{Binding Converter={x:Static local:VectorToStringConverter.Instance}, Path=Coords, Mode=TwoWay}">
+                      <DataGridBoundColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                          <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                      </DataGridBoundColumn.ElementStyle>
+                    </DataGridTextColumn>
+                  </DataGrid.Columns>
+                </DataGrid>
+              </WrapPanel>
+            </StackPanel>
+          </GroupBox>
+        </WrapPanel>
+      </StackPanel>
+    </TabItem>
+  </TabControl>
+</UserControl>

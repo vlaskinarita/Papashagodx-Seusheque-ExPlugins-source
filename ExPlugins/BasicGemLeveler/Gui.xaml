@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.BasicGemLeveler.Gui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:settingsPath="clr-namespace:ExPlugins.BasicGemLeveler">
+  <Grid>
+    <ScrollViewer DataContext="{x:Static settingsPath:BasicGemLevelerSettings.Instance}">
+      <StackPanel>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Content="DebugStatements: " Margin="3,5,3,1" ToolTipService.ToolTip="Should the plugin log debug statements?" />
+          <CheckBox Name="DebugStatementsCheckBox" Background="#FFF0F8FF" Grid.Row="0" Grid.Column="1" Margin="3" IsChecked="{Binding Path=DebugStatements, Mode=TwoWay}" />
+        </Grid>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Button Name="RefreshSkillsButton" Grid.Row="1" Grid.Column="0" Content="Refresh Skills" Margin="3,5,3,1" ToolTipService.ToolTip="Refreshes the list of skills if they change when the bot is not running." Click="RefreshSkillsButton_OnClick" />
+        </Grid>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Content="Gem to Ignore: " Margin="3" ToolTipService.ToolTip="The skillgem name to add/remove from the ignore list." />
+          <TextBox Name="GlobalNameIgnoreTextBox" Grid.Row="0" Grid.Column="1" Width="160" />
+          <Button Name="AddGlobalNameIgnoreButton" Grid.Row="0" Grid.Column="2" Content="Add" Margin="3,5,3,1" ToolTipService.ToolTip="Adds the skillgem name to the ignore list." Click="AddGlobalNameIgnoreButton_OnClick" />
+          <Button Name="RemoveGlobalNameIgnoreButton" Grid.Row="0" Grid.Column="3" Content="Remove" Margin="3,5,3,1" ToolTipService.ToolTip="Removes the skillgem name to the ignore list." Click="RemoveGlobalNameIgnoreButton_OnClick" />
+        </Grid>
+        <Grid Margin="0,6,0,0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Content="Gem to Ignore List: " Margin="3" ToolTipService.ToolTip="A list of skillgem names to ignore from leveling." />
+          <ListBox Name="GlobalNameIgnoreListListBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=GlobalNameIgnoreList, Mode=TwoWay}" SelectionChanged="GlobalNameIgnoreListListBox_SelectionChanged" />
+        </Grid>
+        <Grid Margin="0,6,0,0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Content="All SkillGems: " Margin="3" ToolTipService.ToolTip="User skillgems that are equipped." />
+          <ComboBox Name="AllSkillGemsComboBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=AllSkillGems, Mode=OneWay}" />
+          <Button Name="AddSkillGemButton" Grid.Row="0" Grid.Column="2" Content="Add" Margin="3,5,3,1" ToolTipService.ToolTip="Adds the skillgem to the leveling list." Click="AddSkillGemButton_OnClick" />
+          <Button Name="RemoveSkillGemButton" Grid.Row="0" Grid.Column="3" Content="Remove" Margin="3,5,3,1" ToolTipService.ToolTip="Removes the skillgem from the leveling list." Click="RemoveSkillGemButton_OnClick" />
+          <Button Name="AddAllSkillGemButton" Grid.Row="0" Grid.Column="4" Content="Add All" Margin="3,5,3,1" ToolTipService.ToolTip="Adds all skillgem to the leveling list." Click="AddAllSkillGemButton_OnClick" />
+          <Button Name="RemoveAllSkillGemButton" Grid.Row="0" Grid.Column="5" Content="Remove All" Margin="3,5,3,1" ToolTipService.ToolTip="Removes all skillgem from the leveling list." Click="RemoveAllSkillGemButton_OnClick" />
+          <CheckBox Name="AutoLevelCheckBox" Background="#FFF0F8FF" Grid.Row="0" Grid.Column="6" Margin="3,5,3,1" ToolTipService.ToolTip="If selected, all skill gem equiped but the one in the ignore list will be leveled." Content="Level all non-ignored gems" IsChecked="{Binding Path=AutoLevel}" />
+        </Grid>
+        <Grid Margin="0,6,0,0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Content="SkillGems To Level List: " Margin="3" ToolTipService.ToolTip="A list of skillgems to level." />
+          <ListBox Name="SkillGemsToLevelListListBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=SkillGemsToLevelList, Mode=TwoWay}" />
+        </Grid>
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.TabSetuper.TabSetuperGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:ExPlugins.TabSetuper">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" DataContext="{x:Static local:TabSetuperSettings.Instance}">
+    <StackPanel>
+      <StackPanel>
+        <Label Content="Only supports EXtensions (tab settings) that is distributed by the Papashagodx/Seusheque project." Background="#FF8B0000" Foreground="#FFF0F8FF" FontSize="15" FontWeight="Black" HorizontalContentAlignment="Center" />
+        <GroupBox Header="General">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="0" Content="Should Setup Currency Tab?" ToolTip="Should bot find last PremiumCurrency Tab and make it default tab to use to stash currency? Bot only does it once after the start up." IsChecked="{Binding ShouldSetupCurrencyTab, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="1" Content="Should Setup Trade Tab? (For TraderPlugin!)" ToolTip="Should bot find last Public Tab and make it a tab that TraderPluign uses to trade? Bot only does it once after the start up." IsChecked="{Binding ShouldSetupTradeTab, Mode=TwoWay}" />
+            <Label Grid.Column="0" Grid.Row="2" Content="Replace Tab 1 With" ToolTip="In case your stash does not have tab named '1' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." />
+            <TextBox Grid.Column="1" Grid.Row="2" MinWidth="30" ToolTip="In case your stash does not have tab named '1' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." Text="{Binding Path=ReplaceTab1With, Mode=TwoWay}" />
+            <Label Grid.Column="0" Grid.Row="3" Content="Replace Tab 2 With" ToolTip="In case your stash does not have tab named '2' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." />
+            <TextBox Grid.Column="1" Grid.Row="3" MinWidth="30" ToolTip="In case your stash does not have tab named '2' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." Text="{Binding Path=ReplaceTab2With, Mode=TwoWay}" />
+            <Label Grid.Column="0" Grid.Row="4" Content="Replace Tab 3 With" ToolTip="In case your stash does not have tab named '3' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." />
+            <TextBox Grid.Column="1" Grid.Row="4" MinWidth="30" ToolTip="In case your stash does not have tab named '3' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." Text="{Binding Path=ReplaceTab3With, Mode=TwoWay}" />
+            <Label Grid.Column="0" Grid.Row="5" Content="Replace Tab 4 With" ToolTip="In case your stash does not have tab named '4' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." />
+            <TextBox Grid.Column="1" Grid.Row="5" MinWidth="30" ToolTip="In case your stash does not have tab named '4' but your settings do, what tab should it be replaced with? Does not have to be a nubmer." Text="{Binding Path=ReplaceTab4With, Mode=TwoWay}" />
+          </Grid>
+        </GroupBox>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

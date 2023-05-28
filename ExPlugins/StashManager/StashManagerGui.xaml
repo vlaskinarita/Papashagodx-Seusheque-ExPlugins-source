@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.StashManager.StashManagerGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns:overLimitSeller="clr-namespace:ExPlugins.StashManager">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" DataContext="{x:Static overLimitSeller:StashManagerSettings.Instance}">
+    <StackPanel>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Plugin will not scan special tabs (currency tab, blight tab, delve tab, fragment tab, etc.)" Grid.Row="0" Grid.ColumnSpan="3" Background="#FF8B0000" Foreground="#FFF0F8FF" FontSize="20" FontWeight="Black" HorizontalContentAlignment="Center" />
+        <GroupBox Header="General" Grid.Row="1" Grid.Column="0">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="0" Content="Debug mode" ToolTip="Used to get more detailed logs. PLEASE ENABLE THIS BEFORE SENDING LOGS TO THE DEVELOPERS!" IsChecked="{Binding DebugMode, Mode=TwoWay}" />
+            <Label Content="Seconds between tabs rescan: " ToolTip="Amount of seconds between each time bot will scan stash for items to sell." Grid.Column="0" Grid.Row="1" />
+            <TextBox ToolTip="Amount of seconds between each time bot will scan stash for items to sell." Grid.Column="1" Grid.Row="1" MinWidth="30" Text="{Binding SecondsBetweenScan, Mode=TwoWay}" />
+            <Label Content="Min stack amount to sell: " ToolTip="Minimum !single! stack amount of items from the 'Item names to sell in stack' required to sell those items." Grid.Column="0" Grid.Row="2" />
+            <TextBox ToolTip="Minimum !single! stack amount of items from the 'Item names to sell in stack' required to sell those items." Grid.Column="1" Grid.Row="2" MinWidth="30" Text="{Binding MinStackToSell, Mode=TwoWay}" />
+            <Label Content="Max map priority to sell: " ToolTip="Bot will not sell maps which are higher priority than specified here (only works with MapBotEx)." Grid.Column="0" Grid.Row="3" />
+            <TextBox ToolTip="Bot will not sell maps which are higher priority than specified here (only works with MapBotEx)." Grid.Column="1" Grid.Row="3" MinWidth="30" Text="{Binding MaxPriorityToSellMap, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="4" Content="Apply Incubators" ToolTip="Should bot take incubators from stash in order for EXtensions to apply it?" IsChecked="{Binding ShoulApplyIncubators, Mode=TwoWay}" />
+          </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Map limits" ToolTip="Bot will sell maps of each tier untill there will remain amount, equal to specified in 'Limit' field.">
+          <DataGrid Name="DataGrid" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AutoGenerateColumns="False" AllowDrop="False" CanUserAddRows="False" ItemsSource="{Binding MapLimits, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Tier" IsReadOnly="True" Width="Auto" Binding="{Binding MapTier}" />
+              <DataGridTextColumn Header="Limit" Width="Auto" Binding="{Binding Amount, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </GroupBox>
+        <GroupBox Header="What To Sell" Grid.Row="1" Grid.Column="2" Height="Auto">
+          <StackPanel Orientation="Vertical">
+            <CheckBox Background="#FFF0F8FF" Content="ALL Essences" ToolTip="Should bot sell ALL essences in non-ignored tabs?" IsChecked="{Binding ShouldSellAllEssences, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="ALL Gems" ToolTip="Should bot sell ALL gems in non-ignored tabs?" IsChecked="{Binding ShouldSellAllGems, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Trash Scarabs" ToolTip="Should bot sell scarabs that cost less than 1 chaos in non-ignored tabs?" IsChecked="{Binding ShouldSellTrashScarabs, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Maps" ToolTip="Should bot sell maps that exceed the map limits in non-ignored tabs?" IsChecked="{Binding ShouldSellMaps, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Essences" ToolTip="Should bot sell essences (min stack size specified in min stack amount to sell) that cost less than MinPriceInChaos specified in TraderPlugin in non-ignored tabs?" IsChecked="{Binding ShouldSellEssences, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Incubators" ToolTip="Should bot sell incubators that cost less than MinPriceInChaos specified in TraderPlugin in non-ignored tabs?" IsChecked="{Binding ShouldSellIncubators, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Fossils" ToolTip="Should bot sell fossils that cost less than 1 chaos in non-ignored tabs?" IsChecked="{Binding ShouldSellFossils, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Maven Invitations (The Atlas Only)" ToolTip="Should bot sell non-quest Maven Invitation 'The Atlas' in non-ignored tabs?" IsChecked="{Binding ShouldSellMavenInvitations, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="UberLab Offerings" ToolTip="Should bot sell ALL Offerings to the Goddess if it has 8 ascendancy points?" IsChecked="{Binding ShouldSellUberLabOfferingsWhenUberLabCompleted, Mode=TwoWay}" />
+            <CheckBox Background="#FFF0F8FF" Content="Cluster Jewel Recipe" ToolTip="Should bot scan 'Jewels' tabs from Cross-Bot Settings in order to make cluster recipe? Bot will only make the recipe if it can make the jewels rare.&#xA; Bot will ignore jewels for which price is higher than minimum price to sell in TraderPlugin.&#xA;(YOU DO NOT NEED TO HAVE THE PLUGIN ENABLED, JUST SETUP THE VALUE!)" IsChecked="{Binding ShouldMakeClusterJewelRecipe, Mode=TwoWay}" />
+            <WrapPanel>
+              <Label Content="Minimum Item Level to make Cluster Recipe: " ToolTip="Minimum Cluster Jewel Item Level in order for bot to consider using it for the recipe." />
+              <NumericUpDown FrameworkElement.ToolTip="Minimum Cluster Jewel Item Level in order for bot to consider using it for the recipe." p13:NumericUpDown.Value="{Binding Path=MinimumItemLevelToMakeClusterJewelRecipe, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+            </WrapPanel>
+          </StackPanel>
+        </GroupBox>
+        <Expander Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" Header="Tabs to ignore" ToolTip="Plugin will completely ignore tabs with this names">
+          <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding TabNamesToIgnore, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Tab" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </Expander>
+        <Expander Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" ToolTip="Items with this names will be ignored during scan process. (check the item in the ObjectExplorer, it should be Name, not FullName)" Header="Item Names To Ignore">
+          <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ItemsToIgnore, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </Expander>
+        <Expander Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Header="Item names to sell in stack" ToolTip="This items will be sold only when their stack count (not overall amount!) will reach the number, specified in 'Min stack amount to sell' field. (check the item in the ObjectExplorer, it should be Name, not FullName)">
+          <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ItemsToSellInStack, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </Expander>
+        <Expander Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="0" Header="Item names to force sell" ToolTip="All items with this names will be sold each time plugin scans stash. (check the item in the ObjectExplorer, it should be Name, not FullName)">
+          <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ItemsToForceSell, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </Expander>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

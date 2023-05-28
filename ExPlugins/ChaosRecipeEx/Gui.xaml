@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.ChaosRecipeEx.Gui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:chaosRecipeEx="clr-namespace:ExPlugins.ChaosRecipeEx">
+  <ScrollViewer DataContext="{x:Static chaosRecipeEx:Settings.Instance}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Stash tab" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=StashTab}" />
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" Content="Min iLvl" />
+        <controls:NumericUpDown Grid.Row="1" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls:NumericUpDown.Minimum="1" controls:NumericUpDown.Value="{Binding Path=MinILvl}" />
+      </Grid>
+      <CheckBox Background="#FFF0F8FF" Margin="0,10,0,0" Content="Update stash data every Start" IsChecked="{Binding Path=AlwaysUpdateStashData}" />
+      <GroupBox Margin="0,15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Stash tab item limits">
+        <Grid Margin="0,5,0,0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Content="Weapons" />
+          <NumericUpDown Grid.Row="0" Grid.Column="1" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[0]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" Content="Body armors" />
+          <NumericUpDown Grid.Row="1" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[1]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="2" Grid.Column="0" Margin="0,5,0,0" Content="Helmets" />
+          <NumericUpDown Grid.Row="2" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[2]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="3" Grid.Column="0" Margin="0,5,0,0" Content="Boots" />
+          <NumericUpDown Grid.Row="3" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[3]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="4" Grid.Column="0" Margin="0,5,0,0" Content="Gloves" />
+          <NumericUpDown Grid.Row="4" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[4]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="5" Grid.Column="0" Margin="0,5,0,0" Content="Belts" />
+          <NumericUpDown Grid.Row="5" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[5]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="6" Grid.Column="0" Margin="0,5,0,0" Content="Amulets" />
+          <NumericUpDown Grid.Row="6" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[6]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Grid.Row="7" Grid.Column="0" Margin="0,5,0,0" Content="Rings" />
+          <NumericUpDown Grid.Row="7" Grid.Column="1" FrameworkElement.Margin="0,5,0,0" p11:NumericUpDown.Minimum="1" p11:NumericUpDown.Value="{Binding Path=MaxItemCounts[7]}" xmlns:p11="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+        </Grid>
+      </GroupBox>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

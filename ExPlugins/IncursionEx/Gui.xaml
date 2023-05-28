@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.IncursionEx.Gui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:incursionEx="clr-namespace:ExPlugins.IncursionEx">
+  <ScrollViewer DataContext="{x:Static incursionEx:IncursionSettings.Instance}">
+    <FrameworkElement.Resources>
+      <ResourceDictionary>
+        <Style x:Key="DataGridCheckBoxStyle" BasedOn="{StaticResource MetroCheckBox}" TargetType="{x:Type CheckBox}">
+          <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="DataGridComboBoxStyle" BasedOn="{StaticResource MetroComboBox}" TargetType="{x:Type ComboBox}">
+          <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+      </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <StackPanel>
+      <Grid Margin="0,5,0,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <CheckBox Background="#FFF0F8FF" Grid.Row="0" Content="Open portals before incursions (only in maps)" IsChecked="{Binding Path=PortalBeforeIncursion}" />
+        <CheckBox Background="#FFF0F8FF" Grid.Row="1" Margin="0,5,0,0" Content="Finish area after incursion (QuestBotEx grinding only)" IsChecked="{Binding Path=LeaveAfterIncursion}" />
+        <DataGrid Grid.Row="2" Margin="0,25,0,0" AutoGenerateColumns="False" BorderThickness="1" CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="All" ItemsSource="{Binding Path=IncursionRooms}" SelectionChanged="DataGridUnselectAll">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding Path=Name, Mode=OneTime}" />
+            <DataGridComboBoxColumn ElementStyle="{StaticResource DataGridComboBoxStyle}" Header="Prioritize" ItemsSource="{x:Static incursionEx:IncursionSettings.PriorityActions}" SelectedItemBinding="{Binding Path=PriorityAction, UpdateSourceTrigger=PropertyChanged}" />
+            <DataGridCheckBoxColumn EditingElementStyle="{DynamicResource MetroDataGridCheckBox}" ElementStyle="{StaticResource DataGridCheckBoxStyle}" Header="Never change" Binding="{Binding Path=NoChange, UpdateSourceTrigger=PropertyChanged}" />
+            <DataGridCheckBoxColumn EditingElementStyle="{DynamicResource MetroDataGridCheckBox}" ElementStyle="{StaticResource DataGridCheckBoxStyle}" Header="Never upgrade" Binding="{Binding Path=NoUpgrade, UpdateSourceTrigger=PropertyChanged}" />
+          </DataGrid.Columns>
+        </DataGrid>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.BlightPluginEx.BlightGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns:local="clr-namespace:ExPlugins.BlightPluginEx">
+  <TabControl xmlns:jvfdaf9gdu0ra9n33os="clr-namespace:jVFDAF9GdU0RA9n33oS" DataContext="{x:Static jvfdaf9gdu0ra9n33os:kIpSPM9NV0LwMxPw7i2.Instance}">
+    <TabItem Header="Basic">
+      <StackPanel>
+        <WrapPanel>
+          <Label Content="Tower upgrade distance: " ToolTip="How far from the pump bot should build towers." />
+          <controls1:NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" FrameworkElement.ToolTip="How far from the pump bot should build towers." xmlns:controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" controls1:NumericUpDown.Minimum="1" controls1:NumericUpDown.Value="{Binding Path=TowerUpgradeDistance, Mode=TwoWay}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Force come back to pump every: " ToolTip="Bot will come close to the Blight Pump (place where you start the encounter) each time specified amount of seconds is passed." />
+          <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" FrameworkElement.ToolTip="Bot will come close to the Blight Pump (place where you start the encounter) each time specified amount of seconds is passed." p10:NumericUpDown.Minimum="1" p10:NumericUpDown.Value="{Binding Path=TowerUpgradeTimeout, Mode=TwoWay}" xmlns:p10="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Content=" seconds" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Prioritise tower construction over combat: " ToolTip="Should bot always build towers if possible (it wont fight if it can build!)?" />
+          <CheckBox Name="PrioCheckBox" Background="#FFF0F8FF" ToolTip="Should bot always build towers if possible (it wont fight if it can build!)?" IsChecked="{Binding PrioritizeTowerConstruction, Mode=TwoWay}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Prioritize killing bosses over construction: " />
+          <CheckBox Background="#FFF0F8FF" IsChecked="{Binding PrioritizeBosses, Mode=TwoWay}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Debug mode: " />
+          <CheckBox Name="DebugCheckBox" Background="#FFF0F8FF" ToolTip="Used to get more detailed logs. PLEASE ENABLE THIS BEFORE SENDING LOGS TO THE DEVELOPERS!" IsChecked="{Binding DebugMode, Mode=TwoWay}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Crowd-control tower option on Blighted maps: " ToolTip="Which crowd-control towers bot should build on Blighted Maps?" />
+          <ComboBox Name="ControlTowerReg" ToolTip="Which crowd-control towers bot should build on Blighted Maps?" ItemsSource="{x:Static jvfdaf9gdu0ra9n33os:kIpSPM9NV0LwMxPw7i2.AllControlOptions}" IsEditable="False" SelectedItem="{Binding Path=DefaultControlOnBlightedMaps}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Crowd-control tower option on Regular maps: " ToolTip="Which crowd-control towers bot should build on Regular Maps?" />
+          <ComboBox Name="ControlTowerBlight" ToolTip="Which crowd-control towers bot should build on Regular Maps?" ItemsSource="{x:Static jvfdaf9gdu0ra9n33os:kIpSPM9NV0LwMxPw7i2.AllControlOptions}" IsEditable="False" SelectedItem="{Binding Path=DefaultControlOnRegularMaps}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Build Empower towers on Blighted maps: " ToolTip="Should bot build Empower towers on Blighted Maps?" />
+          <CheckBox Name="EmpowerTowersCheckbox" Background="#FFF0F8FF" ToolTip="Should bot build Empower towers on Blighted Maps?" IsChecked="{Binding BuildEmpowerTowersOnBlightedMaps, Mode=TwoWay}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Build Empower towers on Regular maps: " ToolTip="Should bot build Empower towers on Regular Maps?" />
+          <CheckBox Name="EmpowerTowersCheckboxReg" Background="#FFF0F8FF" ToolTip="Should bot build Empower towers on Regular Maps?" IsChecked="{Binding BuildEmpowerTowersOnRegularMaps, Mode=TwoWay}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Primary DPS tower: " ToolTip="Which DPS tower bot should build?" />
+          <ComboBox Name="PrimaryDps" ToolTip="Which DPS tower bot should build?" ItemsSource="{x:Static jvfdaf9gdu0ra9n33os:kIpSPM9NV0LwMxPw7i2.AllDpsOptions}" IsEditable="False" SelectedItem="{Binding Path=DpsOption}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Stop building towers and defend pump after: " />
+          <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" p10:NumericUpDown.Minimum="1" p10:NumericUpDown.Maximum="999" p10:NumericUpDown.Value="{Binding Path=MaxToBuild, Mode=TwoWay}" xmlns:p10="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+          <Label Content="towers built" />
+        </WrapPanel>
+        <WrapPanel>
+          <Label Content="Fully upgraded towers currently: " />
+          <TextBox IsReadOnly="True" Text="{Binding UpgradedTowers, Mode=TwoWay}" />
+        </WrapPanel>
+      </StackPanel>
+    </TabItem>
+  </TabControl>
+</UserControl>

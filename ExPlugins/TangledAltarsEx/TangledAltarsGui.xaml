@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.TangledAltarsEx.TangledAltarsGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns:local="clr-namespace:ExPlugins.TangledAltarsEx">
+  <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" DataContext="{x:Static local:TangledAltarsExSettings.Instance}">
+    <StackPanel>
+      <GroupBox Header="General">
+        <StackPanel>
+          <CheckBox Background="#FFF0F8FF" Content="Debug mode" ToolTip="Used to get more detailed logs. PLEASE ENABLE THIS BEFORE SENDING LOGS TO THE DEVELOPERS!" IsChecked="{Binding DebugMode, Mode=TwoWay}" />
+        </StackPanel>
+      </GroupBox>
+      <Expander Header="Weightings of Altar mods" ToolTip="There is each Altar mod in this list by default. For some mods there are 2 similar options, 1 for plural item reward option and 1 for single item reward option. The mod with the higher weighting will be chosen while encountering the Tangled Altar.">
+        <DataGrid CanUserResizeColumns="True" HorizontalScrollBarVisibility="Auto" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ModList, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="WhoGains" IsReadOnly="True" MinWidth="120" Binding="{Binding WhoGains}" />
+            <DataGridTextColumn Header="ModBonus" IsReadOnly="True" MinWidth="220" Binding="{Binding ModBonus}" />
+            <controls1:DataGridNumericUpDownColumn DataGridColumn.Header="Weight" DataGridColumn.MaxWidth="80" xmlns:controls1="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" DataGridBoundColumn.Binding="{Binding Weight, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+          </DataGrid.Columns>
+        </DataGrid>
+      </Expander>
+      <Expander Header="Downside mods to ignore" ToolTip="To add ignored downside mod you should add any line of given downside mod, changing any numbers in it to '#'.&#xA;Example:&#xA;Prevent +#% of Suppressed Spell Damage">
+        <DataGrid CanUserResizeColumns="True" HorizontalScrollBarVisibility="Auto" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ModsToIgnoreList, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="Mod" MinWidth="120" Binding="{Binding Name, Mode=TwoWay}" />
+          </DataGrid.Columns>
+        </DataGrid>
+      </Expander>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

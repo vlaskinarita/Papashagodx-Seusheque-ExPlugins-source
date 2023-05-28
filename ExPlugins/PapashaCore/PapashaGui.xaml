@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.PapashaCore.PapashaGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:papashaCore="clr-namespace:ExPlugins.PapashaCore">
+  <TabControl>
+    <TabItem Header="Config">
+      <ScrollViewer DataContext="{x:Static papashaCore:PapashaCoreSettings.Instance}">
+        <StackPanel>
+          <WrapPanel>
+            <Label Content="Key: " />
+            <TextBox Name="KeyTextBox" Text="{Binding Key, Mode=TwoWay}" />
+          </WrapPanel>
+        </StackPanel>
+      </ScrollViewer>
+    </TabItem>
+    <TabItem Header="Remaining time">
+      <ScrollViewer DataContext="{x:Static papashaCore:PapashaCoreSettings.Instance}">
+        <StackPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="ExPack: " />
+            <TextBlock Name="P1RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin1Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="TraderPlugin: " />
+            <TextBlock Name="P2RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin2Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="StashManager: " />
+            <TextBlock Name="P3RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin3Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="SqRoutine: " />
+            <TextBlock Name="P4RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin4Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="BlightPluginEx: " />
+            <TextBlock Name="P5RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin5Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="TangledAltarsEx: " />
+            <TextBlock Name="P6RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin6Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="ItemFilterEx: " />
+            <TextBlock Name="P7RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin7Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="EquipPluginEx: " />
+            <TextBlock Name="P8RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin8Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="SimulacrumPluginEx: " />
+            <TextBlock Name="P9RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin9Time, Mode=Default}" />
+          </WrapPanel>
+          <WrapPanel>
+            <Label VerticalAlignment="Center" Content="BulkTraderEx: " />
+            <TextBlock Name="P10RemTime" TextAlignment="Right" VerticalAlignment="Center" Text="{Binding Plugin10Time, Mode=Default}" />
+          </WrapPanel>
+        </StackPanel>
+      </ScrollViewer>
+    </TabItem>
+  </TabControl>
+</UserControl>

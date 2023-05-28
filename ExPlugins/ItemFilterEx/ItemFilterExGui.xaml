@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.ItemFilterEx.ItemFilterExGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns:itemFilterEx="clr-namespace:ExPlugins.ItemFilterEx">
+  <TabControl DataContext="{x:Static itemFilterEx:ItemFilterExSettings.Instance}">
+    <TabItem Header="Basic">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <GroupBox Header="General" Grid.Column="0" Grid.Row="0" MinWidth="200">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="1" Content="Chromatic recipe" ToolTip="Should bot pickup small RGB items?" IsChecked="{Binding PickupSmallRgb, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="2" Content="Jeweller's recipe" ToolTip="Should bot pickup 6-sockets?" IsChecked="{Binding Pickup6Socket, Mode=TwoWay}" />
+              <CheckBox Name="EssenceCheckBox" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="3" Content="Pickup essences" ToolTip="Should bot pick up essences?" IsChecked="{Binding PickupEssences, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" ToolTip="Should bot pick up essences lower than 'Screaming' tier?" Grid.Row="4" Content="Pickup low-tier essences" IsEnabled="{Binding IsChecked, ElementName=EssenceCheckBox}" IsChecked="{Binding PickupLowTierEssences, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="5" Content="Pickup blighted maps" ToolTip="Should bot pick up blighted maps?" IsChecked="{Binding PickupBlightedMaps, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="6" Content="Pickup logbooks" ToolTip="Should bot pick up expedition logbooks?" IsChecked="{Binding PickupLogBooks, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="7" Content="Pickup and save veiled items" ToolTip="Should bot pick up and stash veiled items?" IsChecked="{Binding PickupVeiledItems, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="8" Content="Pickup and save synthesised items" ToolTip="Should bot pick up and stash synthesised items?" IsChecked="{Binding PickupSynthItems, Mode=TwoWay}" />
+              <CheckBox Name="FractPickup" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="9" Content="Pickup and save fractured items" ToolTip="Should bot pick up and stash fractured items?" IsChecked="{Binding PickupFracturedItems, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="10" Content="Price check fractured items (POESESSID required in autologin)" ToolTip="Should bot price check fractured items?" IsEnabled="{Binding IsChecked, ElementName=FractPickup}" IsChecked="{Binding PriceCheckFracturedItems, Mode=TwoWay}" />
+              <Label Content="Gem quality to pick up: " Grid.Column="0" Grid.Row="11" ToolTip="Minimum gem quality to pick it up." />
+              <NumericUpDown Grid.Column="1" Grid.Row="11" FrameworkElement.MinWidth="60" FrameworkElement.ToolTip="Minimum gem quality to pick it up." p13:NumericUpDown.Value="{Binding MinQualityForGemToPickup, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <CheckBox Name="UpgradeCheckBox" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="12" Content="Upgrade oils/essences (sell in stack to vendor)" ToolTip="Should bot sell oils/essences stacks to vendor? Only works for items in inventory, for an example when bot sells stuff after the map. To sell items from stash, use StashManager." IsChecked="{Binding UpgradeOilEssences, Mode=TwoWay}" />
+              <Label ToolTip="Minimum !single! stack size to sell oils/essences from inventory in stack. Only works for items in inventory, for an example when bot sells stuff after the map. To sell items from stash, use StashManager." Content="Minimum stack of oil/essence to upgrade: " Grid.Column="0" Grid.Row="13" IsEnabled="{Binding IsChecked, ElementName=UpgradeCheckBox}" />
+              <NumericUpDown FrameworkElement.ToolTip="Minimum !single! stack size to sell oils/essences from inventory in stack. Only works for items in inventory, for an example when bot sells stuff after the map. To sell items from stash, use StashManager." Grid.Column="1" Grid.Row="13" FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" UIElement.IsEnabled="{Binding IsChecked, ElementName=UpgradeCheckBox}" p13:NumericUpDown.Value="{Binding OilEssenceStackCountToUpgrade, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label ToolTip="Bot will only sell oils/essences, which price is lower than specified (per unit)." Content="Max price of oil/essence to upgrade (in chaos): " Grid.Column="0" Grid.Row="14" IsEnabled="{Binding IsChecked, ElementName=UpgradeCheckBox}" />
+              <NumericUpDown FrameworkElement.ToolTip="Bot will only sell oils/essences, which price is lower than specified (per unit)." Grid.Column="1" Grid.Row="14" FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" UIElement.IsEnabled="{Binding IsChecked, ElementName=UpgradeCheckBox}" p13:NumericUpDown.Value="{Binding MaxOilEssencePriceToSellInStack, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <CheckBox Name="CustomScrollCheckBox" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="15" ToolTip="Should bot sell Armourer Scraps, Blacksmith Whetstones and Transmutations for ID scrolls?" Content="Sell scraps/transmutes for scrolls" IsChecked="{Binding CustomScrollHandler, Mode=TwoWay}" />
+              <Label ToolTip="Maximum scroll amount after which bot will stop picking up Armourer Scraps, Blacksmith Whetstones and Transmutations to sell them for ID scrolls." Content="Maximum scrolls amount " Grid.Column="0" Grid.Row="16" IsEnabled="{Binding IsChecked, ElementName=CustomScrollCheckBox}" />
+              <NumericUpDown FrameworkElement.ToolTip="Maximum scroll amount after which bot will stop picking up Armourer Scraps, Blacksmith Whetstones and Transmutations to sell them for ID scrolls." Grid.Column="1" Grid.Row="16" FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" UIElement.IsEnabled="{Binding IsChecked, ElementName=CustomScrollCheckBox}" p13:NumericUpDown.Value="{Binding CustomScrollAmount, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <CheckBox Name="CurrencyLimitsCheckbox" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="17" ToolTip="Should bot limit it's currency pickups based on 'Currency Limits' list in the advanced tab?" Content="Limit currency pickup [check advanced tab]" IsChecked="{Binding ForceLimitCurrencyPickup, Mode=TwoWay}" />
+              <Label ToolTip="" Content="Minimum Scroll stack to pick up [MapBot only] " Grid.Column="0" Grid.Row="18" />
+              <NumericUpDown FrameworkElement.ToolTip="" Grid.Column="1" Grid.Row="18" FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinScrollStackToPickup, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label ToolTip="" Content="Pick up all Cluster Jewels above iLvl " Grid.Column="0" Grid.Row="19" />
+              <NumericUpDown FrameworkElement.ToolTip="" Grid.Column="1" Grid.Row="19" FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinClusterIlvlToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+            </Grid>
+          </GroupBox>
+          <GroupBox Grid.Column="1" Grid.Row="1" Header="General map pickup" MinWidth="200">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Label Content="Map pickup limit: " Grid.Column="0" Grid.Row="0" ToolTip="Bot will not pick up any maps if overall map amount is equal or greater than this value." />
+              <TextBox ToolTip="Bot will not pick up any maps if overall map amount is equal or greater than this value." Grid.Column="1" Grid.Row="0" MinWidth="30" IsEnabled="{Binding IsChecked, ElementName=CheckBoxPickup}" Text="{Binding MaxMapAmountPickup, Mode=TwoWay}" />
+              <CheckBox Name="IdMaps" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="1" Content="Id maps" ToolTip="Should bot identify rare maps on pick up?" IsChecked="{Binding IdMaps, Mode=TwoWay}" />
+              <CheckBox Name="CheckBoxPickup" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="2" ToolTip="Should bot pick up maps that are specified in the 'Force Keep Maps' list or uncompleted maps when Atlas Exploration (MapBotEx) is enabled? (only works untill overall map amount is less than MapPickupLimit + 20)" Content="Pickup prio maps over limit" IsChecked="{Binding MapOverLimit, Mode=TwoWay}" />
+            </Grid>
+          </GroupBox>
+          <GroupBox Header="Rare items" Grid.Column="0" Grid.Row="1" Height="Auto">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <CheckBox Background="#FFF0F8FF" Grid.Row="0" Content="ALL Rares" IsChecked="{Binding PickupAllRares, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Row="1" Content="VENDOR ALL Rares" IsChecked="{Binding SellAllRares, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Row="2" Content="Amulets" ToolTip="Should bot pick up Rare Amulets in order for TraderPlugin to evaluate their price and list it for sale?" IsChecked="{Binding PickupRareAmulets, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Row="3" Content="Rings" ToolTip="Should bot pick up Rare Rings in order for TraderPlugin to evaluate their price and list it for sale?" IsChecked="{Binding PickupRareRings, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Row="4" Content="Belts" ToolTip="Should bot pick up Rare Belts in order for TraderPlugin to evaluate their price and list it for sale?" IsChecked="{Binding PickupRareBelts, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Row="5" Content="Jewels" ToolTip="Should bot pick up Rare Jewels in order for TraderPlugin to evaluate their price and list it for sale?" IsChecked="{Binding PickupRareJewels, Mode=TwoWay}" />
+            </Grid>
+          </GroupBox>
+          <GroupBox Grid.Column="1" Grid.Row="0" Header="poe.ninja [chaos values to pick up/save] Use -1 to pickup ignoring item's value" MinWidth="200">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Label Content="Unique: " Grid.Column="0" Grid.Row="0" ToolTip="Minimum price of an Unique Item in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" FrameworkElement.ToolTip="Minimum price of an Unique Item in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinUniquePriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Card:   " Grid.Column="0" Grid.Row="1" ToolTip="Minimum price of a Divination Card in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" FrameworkElement.ToolTip="Minimum price of a Divination Card in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinDivCardPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Scouting report:   " Grid.Column="0" Grid.Row="2" ToolTip="Minimum price of a Scouting Report in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" FrameworkElement.ToolTip="Minimum price of a Scouting Report in chaos for bot to pick up and stash it." Grid.Row="2" FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinScoutingReportPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Fossil:   " Grid.Column="0" Grid.Row="3" ToolTip="Minimum price of Fossil in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="3" FrameworkElement.ToolTip="Minimum price of Fossil in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinFossilPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Scarab:   " Grid.Column="0" Grid.Row="4" ToolTip="Minimum price of Scarab in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="4" FrameworkElement.ToolTip="Minimum price of Scarab in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinScarabPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Oil:   " Grid.Column="0" Grid.Row="5" ToolTip="Minimum price of Oil in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" FrameworkElement.ToolTip="Minimum price of Oil in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinOilPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Gem:   " Grid.Column="0" Grid.Row="6" ToolTip="Minimum price of Gem in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="6" FrameworkElement.ToolTip="Minimum price of Gem in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinGemPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Cluster:   " Grid.Column="0" Grid.Row="7" ToolTip="Minimum price of Cluster jewel in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="7" FrameworkElement.ToolTip="Minimum price of Cluster jewel in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinClusterPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+              <Label Content="Fractured item:   " Grid.Column="0" Grid.Row="8" ToolTip="Minimum price of Fractured item in chaos for bot to pick up and stash it." />
+              <NumericUpDown FrameworkElement.HorizontalAlignment="Left" FrameworkElement.VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" FrameworkElement.ToolTip="Minimum price of Fractured item in chaos for bot to pick up and stash it." FrameworkElement.MinWidth="30" FrameworkElement.MaxHeight="20" p13:NumericUpDown.Value="{Binding MinFracturedPriceToKeep, Mode=TwoWay}" xmlns:p13="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" xmlns="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" />
+            </Grid>
+          </GroupBox>
+        </Grid>
+      </ScrollViewer>
+    </TabItem>
+    <TabItem Header="Advanced">
+      <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="260" />
+          </Grid.ColumnDefinitions>
+          <Grid Row="0" Column="0">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Map pickup by tier" ToolTip="How many maps of each tier bot should pick up and store?">
+              <DataGrid Name="DataGrid" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AutoGenerateColumns="False" HorizontalAlignment="Left" AllowDrop="False" CanUserAddRows="False" ItemsSource="{Binding MapLimits, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Tier" IsReadOnly="True" MinWidth="120" Binding="{Binding MapTier}" />
+                  <DataGridTextColumn Header="Limit" MinWidth="120" Binding="{Binding Amount, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="1" Column="0">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Currency limits" ToolTip="Only editable when 'Limit Currency Pickup' checkbox is checked. Bow will not pick up currency items from this list if their overall amount exceeds amount, specified in 'Limit' field." IsEnabled="{Binding IsChecked, ElementName=CurrencyLimitsCheckbox}">
+              <DataGrid Name="DataGrid1" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" ItemsSource="{Binding CurrencyLimits, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="200" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                  <DataGridTextColumn Header="Limit" MinWidth="50" Binding="{Binding Amount, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="2" Column="0">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Heist contract jobs to save">
+              <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" ItemsSource="{Binding ContractJobsToSave, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="200" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="0" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Force keep gems" ToolTip="Names of gems that bot should always pick up and store." MinWidth="240">
+              <DataGrid Name="DataGrid2" MinWidth="240" CanUserResizeColumns="False" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding AlwaysPickupGems, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="1" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Force keep divination cards" ToolTip="Divination Cards names that bot should always store.">
+              <DataGrid Name="DataGrid3" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" ItemsSource="{Binding DivCardsToKeep, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="2" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Force keep maps" ToolTip="Base name of maps that bot should pickup and save even if it exceeds the limits. (not more than MapPickupLimit + 20)">
+              <DataGrid Name="DataGrid4" AutoGenerateColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" ItemsSource="{Binding MapsToKeep, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="3" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Force keep uniques" ToolTip="Unique Items FullNames (for example: Headhunter) that bot should always store.">
+              <DataGrid Name="DataGrid5" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" ItemsSource="{Binding UniquesToKeep, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="4" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Force keep [Base names]" ToolTip="Bot will force pickup those items. Use Name, not FullName here!" MinWidth="240">
+              <DataGrid Name="DataGride" MinWidth="240" CanUserResizeColumns="False" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding AlwaysPickupItemNames, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="5" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Never pick up [Base names]" ToolTip="Base item names that bot should never pickup. For example: Sapphire Ring.">
+              <DataGrid Name="DataGrid6" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" ItemsSource="{Binding AlwaysSellItemNames, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="6" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Never pick up [Uniques]" ToolTip="Unique item names that bot should never sell to vendor. For example: Tabula Rasa.">
+              <DataGrid Name="DataGride6" AutoGenerateColumns="False" HorizontalAlignment="Left" CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" ItemsSource="{Binding UniquesToAvoid, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="Name" MinWidth="240" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+          <Grid Row="7" Column="1" MinWidth="240">
+            <Expander Grid.Row="0" Grid.Column="0" Header="Enchants to save [InternalName]" ToolTip="Enchant internal names that bot will keep.">
+              <DataGrid AutoGenerateColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" ItemsSource="{Binding EnchantsToSave, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="InternalName" MinWidth="220" Binding="{Binding InternalName, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                  <DataGridTextColumn Header="Value" MinWidth="40" Binding="{Binding Value, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Expander>
+          </Grid>
+        </Grid>
+      </ScrollViewer>
+    </TabItem>
+    <TabItem Header="Official trade pricecheck">
+      <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical">
+        <Button Content="Add all unique items in inventory" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="AddRuleButton_OnClick" />
+        <ItemsControl ItemsSource="{Binding OfficialPricecheck, Mode=TwoWay}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Border Margin="0,0,5,5" BorderBrush="#0747c6" BorderThickness="2">
+                <GroupBox Header="{Binding FullName, Mode=TwoWay}">
+                  <StackPanel>
+                    <DockPanel>
+                      <Button Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" BorderThickness="0" Content="x" DockPanel.Dock="Right" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="DeleteRuleButton_OnClick" />
+                      <CheckBox Content="Enabled" IsChecked="{Binding Enabled, Mode=TwoWay}" />
+                    </DockPanel>
+                    <CheckBox Content="Corrupted matters" IsChecked="{Binding CheckCorrupted, Mode=TwoWay}" />
+                    <CheckBox Content="Ilvl matters" IsChecked="{Binding CheckIlvl, Mode=TwoWay}" />
+                    <CheckBox Content="Check stats [will check all stats if disabled]" IsChecked="{Binding CheckStats, Mode=TwoWay}" />
+                    <DockPanel Width="Auto">
+                      <GroupBox Header="Stats [Click to remove]" IsEnabled="{Binding CheckStats, Mode=TwoWay}">
+                        <ItemsControl ItemsSource="{Binding Path=StatsToCheck, Mode=TwoWay}">
+                          <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                              <StackPanel Orientation="Horizontal" Width="Auto">
+                                <Button HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="{Binding}" Tag="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Click="DeleteStat_OnClick" />
+                              </StackPanel>
+                            </DataTemplate>
+                          </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                      </GroupBox>
+                    </DockPanel>
+                  </StackPanel>
+                </GroupBox>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </TabItem>
+    <TabItem Header="Stats">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Button Grid.Row="0" Grid.Column="0" Content="Refresh" Click="Button_Click" />
+          <ListView Name="CurrencyStats" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0" ItemsSource="{Binding ShownEntries}">
+            <ListView.View>
+              <GridView>
+                <GridViewColumn Width="135" Header="Name" DisplayMemberBinding="{Binding CurrencyName}">
+                  <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                      <Grid>
+                        <TextBlock Text="{Binding CurrencyName}" />
+                      </Grid>
+                    </DataTemplate>
+                  </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Width="70" Header="Amount" DisplayMemberBinding="{Binding CurrencyAmount}">
+                  <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                      <Grid>
+                        <TextBlock Text="{Binding CurrencyAmount}" />
+                      </Grid>
+                    </DataTemplate>
+                  </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                <GridViewColumn Width="60" Header="Ratio" DisplayMemberBinding="{Binding HourlyRatio, Mode=OneWay}">
+                  <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                      <Grid>
+                        <TextBlock ToolTip="Currency per hour ratio" Text="{Binding HourlyRatio}" />
+                      </Grid>
+                    </DataTemplate>
+                  </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+              </GridView>
+            </ListView.View>
+          </ListView>
+        </Grid>
+      </ScrollViewer>
+    </TabItem>
+  </TabControl>
+</UserControl>

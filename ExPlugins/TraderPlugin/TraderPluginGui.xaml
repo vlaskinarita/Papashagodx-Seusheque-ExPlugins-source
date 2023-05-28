@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="ExPlugins.TraderPlugin.TraderPluginGui" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:ExPlugins.TraderPlugin" xmlns:classes="clr-namespace:ExPlugins.TraderPlugin.Classes">
+  <TabControl DataContext="{x:Static local:TraderPluginSettings.Instance}">
+    <TabItem Header="Basic">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Label Content="Plugin will not scan special tabs (currency tab, blight tab, delve tab, fragment tab, etc.)" Grid.Row="0" Grid.ColumnSpan="3" Background="#FF8B0000" Foreground="#FFF0F8FF" FontSize="13" FontWeight="Black" HorizontalContentAlignment="Center" />
+          <GroupBox Header="General" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="0" Content="Debug mode" ToolTip="Used to get more detailed logs. PLEASE ENABLE THIS BEFORE SENDING LOGS TO THE DEVELOPERS!" IsChecked="{Binding DebugMode, Mode=TwoWay}" />
+              <CheckBox Background="#FFF0F8FF" Grid.Column="0" Grid.Row="1" Content="Enable Conversation AI [EXPERIMENTAL]" ToolTip="Do not use unattended" IsChecked="{Binding EnableConversationAI, Mode=TwoWay}" />
+              <Label Content="Seconds between tabs rescan: " ToolTip="Amount of seconds between each time bot will scan stash for items to list for sale" Grid.Column="0" Grid.Row="2" />
+              <TextBox ToolTip="Amount of seconds between each time bot will scan stash for items to list for sale" Grid.Column="1" Grid.Row="2" MinWidth="30" Text="{Binding SecondsBetweenScan, Mode=TwoWay}" />
+              <Label Content="League name: " Grid.Column="0" Grid.Row="3" />
+              <TextBox Grid.Column="1" Grid.Row="3" MinWidth="30" Text="{Binding LegaueName, Mode=TwoWay}" />
+              <Label Content="Stash tab to trade [edited only by TabSetuper]: " ToolTip="TabSetuper is free of charge, it will use your last public tab (generic or quad) to trade" Grid.Column="0" Grid.Row="4" />
+              <TextBox ToolTip="TabSetuper is free of charge, it will use your last public tab (generic or quad) to trade" IsReadOnly="True" Grid.Column="1" Grid.Row="4" MinWidth="30" Text="{Binding StashTabToTrade, Mode=TwoWay}" />
+              <Label Content="Minimum price in chaos to list item: " ToolTip="Minimum price of a single slot of an item for bot to list it. For example it will list 3 Crimson Oils if they cost 1c each and the specified value is 3 or more, but will not list 3 Timeless Emblems that cost 2c each, it will only list them if the specified value is 2." Grid.Column="0" Grid.Row="5" />
+              <TextBox ToolTip="Minimum price of a single slot of an item for bot to list it. For example it will list 3 Crimson Oils if they cost 1c each and the specified value is 3 or more, but will not list 3 Timeless Emblems that cost 2c each, it will only list them if the specified value is 2.." Grid.Column="1" Grid.Row="5" MinWidth="30" Text="{Binding MinPriceInChaosToList, Mode=TwoWay}" />
+              <Label Content="Minimum price in chaos to react to trade requests: " ToolTip="Minimum trade request price in chaos for bot to make a trade." Grid.Column="0" Grid.Row="6" />
+              <TextBox ToolTip="Minimum trade request price in chaos for bot to make a trade." Grid.Column="1" Grid.Row="6" MinWidth="30" Text="{Binding MinPriceInChaosToTrade, Mode=TwoWay}" />
+              <Label Content="Default Divine Orb price: " ToolTip="Used in case poe.ninja Divine Orb price check fails during trade. Safety first, but I believe this never actually happened." Grid.Column="0" Grid.Row="7" />
+              <TextBox ToolTip="Used in case poe.ninja Divine Orb price check fails during trade. Safety first, but I believe this never actually happened." Grid.Column="1" Grid.Row="7" MinWidth="30" Text="{Binding DefaultExPrice, Mode=TwoWay}" />
+              <Label Content="Free Inventory Squares To Trade Before Stashing: " ToolTip="Bot will trade before selling or stashing items if it has more than specified amount of free inventory space. !!!Care!!! It will not account for how much space item(s) which it will be trading consume!" Grid.Column="0" Grid.Row="8" />
+              <TextBox ToolTip="Bot will trade before selling or stashing items if it has more than specified amount of free inventory space. !!!Care!!! It will not account for how much space item(s) which it will be trading consume!" Grid.Column="1" Grid.Row="8" MinWidth="30" Text="{Binding FreeInventorySquaresToTradeBeforeStashing, Mode=TwoWay}" />
+              <Label Content="Stat reducer (for rare items): " ToolTip="Value to multiply numerical values by on rare items while searching for them on poe.trade. Should not be greater than 1 and is not reccomended to be lower than 0.9." Grid.Column="0" Grid.Row="9" />
+              <TextBox ToolTip="Value to multiply numerical values by on rare items while searching for them on poe.trade. Should not be greater than 1 and is not reccomended to be lower than 0.9." Grid.Column="1" Grid.Row="9" MinWidth="30" Text="{Binding StatReducer, Mode=TwoWay}" />
+            </Grid>
+          </GroupBox>
+          <GroupBox Header="What To Sell" Grid.Row="1" Grid.Column="2" Height="Auto">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Name="ShouldSellLogbooksCheckBox" Background="#FFF0F8FF" Grid.Row="0" Grid.Column="0" ToolTip="Should bot list logbooks for sale?" Content="Logbooks" IsChecked="{Binding ShouldSellLogbooks, Mode=TwoWay}" />
+              <Label Grid.Row="1" Grid.Column="0" Content="Default logbook price:" ToolTip="Default price which is then modified based on the types of areas present on the logbook." IsEnabled="{Binding ElementName=ShouldSellLogbooksCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Row="1" Grid.Column="1" ToolTip="Default price which is then modified based on the types of areas present on the logbook." MaxWidth="30" Text="{Binding DefaultLogbookPrice, Mode=TwoWay}" IsEnabled="{Binding ElementName=ShouldSellLogbooksCheckBox, Path=IsChecked}" />
+              <CheckBox Name="ShouldSellStackedDicksCheckBox" Background="#FFF0F8FF" Grid.Row="2" Grid.Column="0" ToolTip="Should list Stacked Decks?" Content="Stacked Dicks" IsChecked="{Binding ShouldSellStackedDicks, Mode=TwoWay}" />
+              <Label Grid.Row="3" Grid.Column="0" Content="Stacked Deck price:" ToolTip="Price to list Stacked Decks for (per unit). Price per unit should be exactly the same as in the field below." IsEnabled="{Binding ElementName=ShouldSellStackedDicksCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Column="1" Grid.Row="3" MaxWidth="30" ToolTip="Price to list Stacked Decks for (per unit). Price per unit should be exactly the same as in the field below." Text="{Binding DefaultStackedDeckPrice, Mode=TwoWay}" IsEnabled="{Binding ElementName=ShouldSellStackedDicksCheckBox, Path=IsChecked}" />
+              <Label Grid.Row="4" Grid.Column="0" Content="Stacked Deck exact note:" ToolTip="Poe.trade rounds up all raw currency prices to the .5, which means that if you want to list something for 1.6c, then your only way is to list it for 16/10c (or similar), otherwise it will round it to 1.5c. Hence there is a field for exact note. Price per unit should be exactly the same as in the field above." IsEnabled="{Binding ElementName=ShouldSellStackedDicksCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Column="1" Grid.Row="4" MinWidth="30" ToolTip="Poe.trade rounds up all raw currency prices to the .5, which means that if you want to list something for 1.6c, then your only way is to list it for 16/10c (or similar), otherwise it will round it to 1.5c. Hence there is a field for exact note. Price per unit should be exactly the same as in the field above." Text="{Binding StackedDeckExactNote, Mode=TwoWay}" IsEnabled="{Binding ElementName=ShouldSellStackedDicksCheckBox, Path=IsChecked}" />
+              <Label Grid.Row="5" Grid.Column="0" ToolTip="Price to list Remnant of Corruption for (per unit)." Content="Default Remnant of Corruption price:" />
+              <TextBox Grid.Row="5" Grid.Column="1" ToolTip="Price to list Remnant of Corruption for (per unit)." MinWidth="30" Text="{Binding DefaultRemnantOfCorruptionPrice, Mode=TwoWay}" />
+              <Label Grid.Row="6" Grid.Column="0" Content="Default Eater/Exarch Invitations price:" ToolTip="Price to list Eater/Exarch Invitations for (chaos). Leave 0 to list for poe.ninja value." IsEnabled="{Binding ElementName=AwakenerCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Row="6" Grid.Column="1" MinWidth="30" ToolTip="Price to list Eater/Exarch Invitations for (chaos). Leave 0 to list for poe.ninja value." Text="{Binding EaterExarchInvitationPriceChaos, Mode=TwoWay}" IsEnabled="{Binding ElementName=AwakenerCheckBox, Path=IsChecked}" />
+              <StackPanel Grid.Column="0" Grid.Row="7" Orientation="Vertical">
+                <CheckBox Background="#FFF0F8FF" Content="Uniques" ToolTip="Should list Uniques?" IsChecked="{Binding ShouldSellUniques, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Rares" ToolTip="Should list Rare Items? Only works for Rings, Amulets, Belts, Jewels and Cluster Jewels." IsChecked="{Binding ShouldSellRares, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Gems" ToolTip="Should list Gems?" IsChecked="{Binding ShouldSellGems, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Delirium Orbs" ToolTip="Should list Delirium Orbs?" IsChecked="{Binding ShouldSellDeliriumOrbs, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Oils" ToolTip="Should list Oils?" IsChecked="{Binding ShouldSellOils, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Catalysts" ToolTip="Should list Catalysts?" IsChecked="{Binding ShouldSellCatalysts, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Gamble Currency (Expedition)" ToolTip="Should list Expedition Gamble Currency?" IsChecked="{Binding ShouldSellGambleCurrency, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Blessings" ToolTip="Should list Blessings (from Breach League)?" IsChecked="{Binding ShouldSellBlessings, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Divination Cards" ToolTip="Should list Divination Cards?" IsChecked="{Binding ShouldSellDivCards, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Prophecy" ToolTip="Should list Prophecies?" IsChecked="{Binding ShouldSellProphecy, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Essences" ToolTip="Should list Essences?" IsChecked="{Binding ShouldSellEssences, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Delve Currency" ToolTip="Should list Delve Currency?" IsChecked="{Binding ShouldSellDelveCurrency, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Map Fragments" ToolTip="Should list Map Fragments?" IsChecked="{Binding ShouldSellMapFragments, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Sacrifice Fragments" ToolTip="Should list Atziri Sacrifice Fragments?" IsChecked="{Binding ShouldSellSacFragments, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Scarabs" ToolTip="Should list Scarabs?" IsChecked="{Binding ShouldSellScarabs, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Maps" IsChecked="{Binding ShouldSellMaps, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Blight Maps" ToolTip="Should list Blight Maps?" IsChecked="{Binding ShouldSellBlightedMaps, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Blight-Ravaged Maps" ToolTip="Should list Blight-Ravaged Maps?" IsChecked="{Binding ShouldSellBlightRavagedMaps, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Maven's Invitations" ToolTip="Should list Maven's Invitations?" IsChecked="{Binding ShouldSellMavenInvitations, Mode=TwoWay}" />
+                <CheckBox Background="#FFF0F8FF" Content="Cluster Jewels" ToolTip="Should list Cluster Jewels?" IsChecked="{Binding ShouldListClusters, Mode=TwoWay}" />
+                <CheckBox Name="AwakenerCheckBox" Background="#FFF0F8FF" Content="Awakener Guardian Maps" ToolTip="Should list Awakener Guardian Maps?" IsChecked="{Binding ShouldListAwakenerGuardianMaps, Mode=TwoWay}" />
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                  <Label Content="Awakener Guardian Maps Price (chaos):" Width="220" ToolTip="List Awakener Guardian Maps for (chaos):" IsEnabled="{Binding ElementName=AwakenerCheckBox, Path=IsChecked}" />
+                  <TextBox MinWidth="30" ToolTip="List Awakener Guardian Maps for (chaos):" Text="{Binding AwakenerGuardianMapsPrice, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=AwakenerCheckBox}" />
+                </WrapPanel>
+                <CheckBox Name="ElderCheckBox" Background="#FFF0F8FF" Content="Elder Guardian Maps" ToolTip="Should list Elder Guardian Maps?" IsChecked="{Binding ShouldListElderGuardianMaps, Mode=TwoWay}" />
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                  <Label Content="Elder Guardian Maps Price (chaos):" Width="220" ToolTip="List Elder Guardian Maps for (chaos):" IsEnabled="{Binding ElementName=ElderCheckBox, Path=IsChecked}" />
+                  <TextBox MinWidth="30" ToolTip="List Elder Guardian Maps for (chaos):" Text="{Binding ElderGuardianMapsPrice, Mode=TwoWay}" IsEnabled="{Binding ElementName=ElderCheckBox, Path=IsChecked}" />
+                </WrapPanel>
+                <CheckBox Name="ShaperCheckBox" Background="#FFF0F8FF" Content="Shaper Guardian Maps" ToolTip="Should list Shaper Guardian Maps?" IsChecked="{Binding ShouldListShaperGuardianMaps, Mode=TwoWay}" />
+                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                  <Label Content="Shaper Guardian Maps Price (chaos):" Width="220" ToolTip="List Shaper Guardian Maps for (chaos):" IsEnabled="{Binding ElementName=ShaperCheckBox, Path=IsChecked}" />
+                  <TextBox MinWidth="30" ToolTip="List Shaper Guardian Maps for (chaos):" Text="{Binding ShaperGuardianMapsPrice, Mode=TwoWay}" IsEnabled="{Binding ElementName=ShaperCheckBox, Path=IsChecked}" />
+                </WrapPanel>
+              </StackPanel>
+            </Grid>
+          </GroupBox>
+          <Expander Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0" Header="Additional Item Names To List" ToolTip="If there are any items that are not in the default preset, you can just put their name here (check the item in the ObjectExplorer, it should be Name, not FullName).">
+            <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ItemsToList, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+              </DataGrid.Columns>
+            </DataGrid>
+          </Expander>
+          <Expander Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Header="Item Names To Ignore" ToolTip="Items that should be never listed. (check the item in the ObjectExplorer, it should be Name, not FullName).">
+            <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding ItemsToIgnore, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+              </DataGrid.Columns>
+            </DataGrid>
+          </Expander>
+        </Grid>
+      </ScrollViewer>
+    </TabItem>
+    <TabItem Header="Advanced">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <GroupBox Grid.Row="0" Grid.Column="0" Header="Trade Skipping">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Name="TradesAfterMapLeaveAmountCheckBox" Background="#FFF0F8FF" Grid.Column="0" Grid.Row="0" Content="Ignore Trades After Portals Spent" ToolTip="If set to true, bot will ignore trades based on the settings below." IsChecked="{Binding ShouldIgnoreTradesAfterMapLeaveAmount, Mode=TwoWay}" />
+              <Label Content="Max portals spent to leave map:" Grid.Column="0" Grid.Row="1" ToolTip="If checbox set to true, bot will not respond to trade requests after it has spend specified amount of map portals." IsEnabled="{Binding ElementName=TradesAfterMapLeaveAmountCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Column="1" Grid.Row="1" ToolTip="If checbox set to true, bot will not respond to trade requests after it has spend specified amount of map portals." MinWidth="30" Text="{Binding MaxPortalsSpentToLeaveMap, Mode=TwoWay}" IsEnabled="{Binding ElementName=TradesAfterMapLeaveAmountCheckBox, Path=IsChecked}" />
+              <Label Content="Min price to leave map after portals spent (Chaos):" ToolTip="Bot will leave map for trades for greater price than specified here even if it has spent amount of map portals, specified above." Grid.Column="0" Grid.Row="2" IsEnabled="{Binding ElementName=TradesAfterMapLeaveAmountCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Column="1" Grid.Row="2" ToolTip="Bot will leave map for trades for greater price than specified here even if it has spent amount of map portals, specified above." MinWidth="30" Text="{Binding MinPriceInChaosToLeaveMapWhenIgnoringTrades, Mode=TwoWay}" IsEnabled="{Binding ElementName=TradesAfterMapLeaveAmountCheckBox, Path=IsChecked}" />
+              <Label Content="Delay after custom event (Seconds):" ToolTip="In case you dont want bot to respond to trade messages after some event in your plugin, you should add Utility.BroadcastMessage(null, 'SuspendTrades', ''); (use double brackets) at the line you need. Bot will ignore trade requests for specified amount of seconds after this message was sent." Grid.Column="0" Grid.Row="3" />
+              <TextBox Grid.Column="1" Grid.Row="3" ToolTip="In case you dont want bot to respond to trade messages after some event in your plugin, you should add Utility.BroadcastMessage(null, 'SuspendTrades', ''); (use double brackets) at the line you need. Bot will ignore trade requests for specified amount of seconds after this message was sent." MinWidth="30" Text="{Binding DelayAfterCurrencyTradeSeconds, Mode=TwoWay}" />
+            </Grid>
+          </GroupBox>
+          <GroupBox Grid.Row="0" Grid.Column="1" Header="Misc">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <CheckBox Background="#FFF0F8FF" ToolTip="Should bot reprice trade tab?" Grid.Column="0" Grid.Row="0" Content="Enable trade tab repricing" Margin="0,0,0,12" IsChecked="{Binding RepriceTradeTab, Mode=TwoWay}" />
+              <CheckBox Name="TelemetryEnabledCheckBox" Background="#FFF0F8FF" ToolTip="Should bot send info about all sold items to the stat server? (NOT FUNCTIONAL FOR NOW)" Grid.Column="0" Grid.Row="1" Content="Enable telemetry" IsChecked="{Binding TelemetryEnabled, Mode=TwoWay}" />
+              <Label Content="ApiEndpoint: " Grid.Column="0" Grid.Row="2" IsEnabled="{Binding ElementName=TelemetryEnabledCheckBox, Path=IsChecked}" />
+              <TextBox Grid.Column="1" Grid.Row="2" MinWidth="30" IsEnabled="{Binding ElementName=TelemetryEnabledCheckBox, Path=IsChecked}" Text="{Binding ApiEndpoint, Mode=TwoWay}" />
+            </Grid>
+          </GroupBox>
+          <Expander Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Header="Tab Names To Ignore" ToolTip="Bot will not scan these tabs for items to list.">
+            <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding TabNamesToIgnoreOnScan, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Tab" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+              </DataGrid.Columns>
+            </DataGrid>
+          </Expander>
+          <Expander Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Header="Locations names to ignore trades in" ToolTip="Location names where bot should ignore trade messages (like boss areas).">
+            <DataGrid CanUserResizeColumns="False" HorizontalScrollBarVisibility="Hidden" AllowDrop="False" CanUserAddRows="True" CanUserReorderColumns="False" AutoGenerateColumns="False" ItemsSource="{Binding LocationNamesToIgnoreTradeIn, Mode=TwoWay, NotifyOnTargetUpdated=True}">
+              <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, NotifyOnTargetUpdated=True}" />
+              </DataGrid.Columns>
+            </DataGrid>
+          </Expander>
+        </Grid>
+      </ScrollViewer>
+    </TabItem>
+    <TabItem Header="Listed items" xmlns:nvlfw8xav0rddncat6a="clr-namespace:NVLFw8XAV0rDDnCAT6a" DataContext="{x:Static nvlfw8xav0rddncat6a:r1fLPhXoQmmUanKGvIN.EvaluatedItemsInstance}">
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+          <DataGrid GridLinesVisibility="All" AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" ItemsSource="{Binding ListedItems}">
+            <DataGrid.Columns>
+              <DataGridTextColumn Header="Name" IsReadOnly="True" Binding="{Binding ItemName}" />
+              <DataGridTextColumn Header="Price note" IsReadOnly="True" Binding="{Binding ItemPrice}" />
+              <DataGridTextColumn Header="Stack Count" IsReadOnly="True" Binding="{Binding StackCount}" />
+              <DataGridTextColumn Header="Position" IsReadOnly="True" Binding="{Binding ItemPos}" />
+              <DataGridTextColumn Header="List Date" IsReadOnly="True" Binding="{Binding ListDate, StringFormat=dd-MMM-yyyy-HH-mm}" />
+            </DataGrid.Columns>
+          </DataGrid>
+        </StackPanel>
+      </ScrollViewer>
+    </TabItem>
+  </TabControl>
+</UserControl>
